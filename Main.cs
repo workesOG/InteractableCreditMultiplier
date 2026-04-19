@@ -4,7 +4,7 @@ using HarmonyLib;
 
 namespace InteractableCreditMultiplier
 {
-    [BepInPlugin("com.workes.interactablecreditmultiplier", "Interactable Credit Multiplier", "0.0.1")]
+    [BepInPlugin("com.workes.interactablecreditmultiplier", "Interactable Credit Multiplier", "1.0.0")]
     public class Main : BaseUnityPlugin
     {
         public static ConfigEntry<float> InteractableCreditMultiplier { get; private set; }
