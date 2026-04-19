@@ -6,6 +6,7 @@
     <Nullable>disable</Nullable>
     <Private>false</Private>
     <OutputPath>C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\InteractableCreditMultiplier</OutputPath>
+    <OutputPath Condition=" '$(Configuration)|$(Platform)' == '$(Configuration)|$(Platform)' ">package</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
