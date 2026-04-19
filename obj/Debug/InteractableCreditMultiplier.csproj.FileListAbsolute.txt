@@ -1,0 +1,11 @@
+C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\NoDropsJustItems\InteractableCreditMultiplier.dll
+C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\NoDropsJustItems\InteractableCreditMultiplier.pdb
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.csproj.AssemblyReference.cache
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.AssemblyInfoInputs.cache
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.AssemblyInfo.cs
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.csproj.CoreCompileInputs.cache
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.dll
+C:\GitHub Repos\Risk of Rain 2 Mods\InteractableCreditMultiplier\obj\Debug\InteractableCreditMultiplier.pdb
+C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\InteractableCreditMultiplier\InteractableCreditMultiplier.dll
+C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\InteractableCreditMultiplier\InteractableCreditMultiplier.pdb
