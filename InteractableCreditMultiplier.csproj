@@ -64,6 +64,16 @@
     <HintPath>C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\core\0Harmony.dll</HintPath>
     <Private>false</Private>
   </Reference>
+
+  <Reference Include="MMHOOK_RoR2">
+    <HintPath>C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\MMHOOK\MMHOOK_RoR2.dll</HintPath>
+    <Private>false</Private>
+  </Reference>
+
+  <Reference Include="RiskOfOptions">
+    <HintPath>C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Default\BepInEx\plugins\Rune580-Risk_Of_Options\RiskOfOptions\RiskOfOptions.dll</HintPath>
+    <Private>false</Private>
+  </Reference>
 </ItemGroup>
 
 </Project>
