@@ -2,6 +2,6 @@
   "name": "InteractableCreditMultiplier",
   "description": "Multiplies the director's interactable credit amount by a flat configurable multiplier, stacking multiplicatively with multiplayer bonuses.",
   "version_number": "1.2.0",
-  "dependencies": ["bbepis-BepInExPack-5.4.2121", "com.rune580.riskofoptions"],
+  "dependencies": ["bbepis-BepInExPack-5.4.2121", "Rune580-Risk_Of_Options-2.8.5"],
   "website_url": "https://github.com/workesOG/InteractableCreditMultiplier"
 }
