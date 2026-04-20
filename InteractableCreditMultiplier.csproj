@@ -5,10 +5,29 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <Private>false</Private>
-    <OutputPath>C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\InteractableCreditMultiplier</OutputPath>
-    <OutputPath Condition=" '$(Configuration)|$(Platform)' == '$(Configuration)|$(Platform)' ">package</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>package\</OutputPath>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <BepInExPluginPath>
+      C:\Users\theis\AppData\Roaming\Thunderstore Mod Manager\DataFolder\RiskOfRain2\profiles\Development\BepInEx\plugins\InteractableCreditMultiplier\
+    </BepInExPluginPath>
+  </PropertyGroup>
+
+  <Target Name="PostBuildCopy"
+          AfterTargets="Build"
+          Condition="'$(Configuration)' == 'Debug'">
+
+    <ItemGroup>
+      <BuildOutput Include="$(OutputPath)*.*" />
+    </ItemGroup>
+
+    <Copy
+      SourceFiles="@(BuildOutput)"
+      DestinationFolder="$(BepInExPluginPath)"
+      SkipUnchangedFiles="true" />
+  </Target>
 
   <ItemGroup>
   <Reference Include="Assembly-CSharp">
