@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InteractableCreditMultiplier")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77721f11b444a600a812130dd42fcd5d53cdb0fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c8f07bc113bf6cdda2414a2ef7fdc4e9e5a5615")]
 [assembly: System.Reflection.AssemblyProductAttribute("InteractableCreditMultiplier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InteractableCreditMultiplier")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

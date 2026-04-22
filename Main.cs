@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using BepInEx.Logging;
 using RoR2;
 
 namespace InteractableCreditMultiplier
@@ -7,27 +8,18 @@ namespace InteractableCreditMultiplier
     [BepInPlugin("com.workes.interactablecreditmultiplier", "Interactable Credit Multiplier", "1.2.0")]
     public class Main : BaseUnityPlugin
     {
+        public static ManualLogSource Log { get; private set; }
+
         public void Awake()
         {
+            Log = Logger;
             ConfigHandler.InitConfig(Config);
+            PrefabHandler.InitPrefabHandler();
 
-            SceneDirector.onPrePopulateSceneServer += OnPrePopulationSceneServer;
-
+            GeneralHooks.InitHooks();
             DebugUtils.InitDebugHooks();
 
-            Logger.LogInfo("[InteractableCreditMultiplier] Mod loaded");
-        }
-
-        private void OnPrePopulationSceneServer(SceneDirector self)
-        {
-            float mult = ConfigHandler.InteractableCreditMultiplier.Value;
-
-            int original = self.interactableCredit;
-            int modified = (int)(original * mult);
-
-            self.interactableCredit = modified;
-
-            Logger.LogInfo($"[InteractableCreditMultiplier] Credits: {original} -> {modified}");
+            Log.LogInfo("[InteractableCreditMultiplier] Mod loaded");
         }
     }
 }
