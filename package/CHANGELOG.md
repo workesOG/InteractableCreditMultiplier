@@ -1,4 +1,6 @@
-# Changelog
+## v1.3.0
+
+- Added a bunch of new configuration options for limiting interactable spawns.
 
 ## v1.2.0
 

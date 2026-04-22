@@ -8,10 +8,17 @@ This mod multiplies a flat configurable multiplier onto the interactable credit 
 
 - Configurable flat multiplier for interactable credits.
 - Multiplier stacks multiplicatively with multiplayer bonuses.
+- Many configuration options for limiting the way interactables spawn.
 
 ## Configuration
 
-You can adjust the multiplier value in the generated config file after the first game launch. Configuration file is generated automatically on the first game launch with the mod.
+You can adjust the multiplier value in the generated config file after the first game launch.
+There are also a bunch of different options for limiting what spawn and how much.
+Configuration file is generated automatically on the first game launch with the mod.
+
+## Important
+
+The limiting system (Fully customizable via config) works by preventing spawns. This happens after credits have been subtracted, so any type of spawn prevetion because of your limitation config options will result in "loss" of credits.
 
 ## Known Issues
 
