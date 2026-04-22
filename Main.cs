@@ -9,6 +9,7 @@ namespace InteractableCreditMultiplier
     public class Main : BaseUnityPlugin
     {
         public static ManualLogSource Log { get; private set; }
+        public static SceneSpawnTracker CurrentSpawnTracker { get; set; }
 
         public void Awake()
         {
