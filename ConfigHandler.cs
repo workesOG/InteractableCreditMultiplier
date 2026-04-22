@@ -33,10 +33,10 @@ namespace InteractableCreditMultiplier
         public static ConfigEntry<bool> IgnoreRedAndBossPrinters { get; private set; }
 
         // Shrine Limits
-        public static ConfigEntry<int> MaxMountainShrines { get; private set; }
         public static ConfigEntry<int> MaxBloodShrines { get; private set; }
         public static ConfigEntry<int> MaxCombatShrines { get; private set; }
         public static ConfigEntry<int> MaxWoodlandShrines { get; private set; }
+        public static ConfigEntry<int> MaxMountainShrines { get; private set; }
         public static ConfigEntry<int> MaxChanceShrines { get; private set; }
         public static ConfigEntry<int> MaxOrderShrines { get; private set; }
         public static ConfigEntry<int> MaxShapingShrines { get; private set; }
@@ -52,7 +52,11 @@ namespace InteractableCreditMultiplier
         public static ConfigEntry<int> MaxDronesPerType { get; private set; }
 
         // Shops Limits
-        public static ConfigEntry<int> MaxMultishops { get; private set; }
+        public static ConfigEntry<int> MaxTotalMultishops { get; private set; }
+        public static ConfigEntry<int> MaxTier1Multishops { get; private set; }
+        public static ConfigEntry<int> MaxTier2Multishops { get; private set; }
+        public static ConfigEntry<int> MaxEquipmentMultishops { get; private set; }
+        public static ConfigEntry<bool> IgnoreEquipmentMultishops { get; private set; }
 
         // Limit Pity System
         public static ConfigEntry<bool> EnableSoftCaps { get; private set; }
@@ -60,9 +64,11 @@ namespace InteractableCreditMultiplier
         public static ConfigEntry<bool> SoftCapScaling { get; private set; }
 
         // Debug
-        public static ConfigEntry<bool> VerboseLogging { get; private set; }
+        public static ConfigEntry<bool> VerboseCreditLogging { get; private set; }
         public static ConfigEntry<bool> LogSpawnedPrefabs { get; private set; }
+        public static ConfigEntry<bool> LogPreventedSpawns { get; private set; }
         public static ConfigEntry<bool> LogUncategorizedPrefabs { get; private set; }
+        public static ConfigEntry<bool> DebugSpawnTracker { get; private set; }
 
         public static void InitConfig(ConfigFile config)
         {
@@ -71,12 +77,6 @@ namespace InteractableCreditMultiplier
                 "InteractableCreditMultiplier",
                 1.5f,
                 "A fixed multiplier for your interactable credits"
-            );
-            VerboseLogging = config.Bind(
-                "Debug",
-                "VerboseLogging",
-                false,
-                "Enable verbose logging for debugging purposes"
             );
 
             MaxTieredChestsTotal = config.Bind(
@@ -131,13 +131,13 @@ namespace InteractableCreditMultiplier
                 "ChestLimits",
                 "IgnoreTier3Chests",
                 true,
-                "If enabled, the limiter system will never touch legendary chests"
+                "If enabled, the limiter system will not count legendary chests towards total tiered chests limit"
             );
             IgnoreCloakedChests = config.Bind(
                 "ChestLimits",
                 "IgnoreCloakedChests",
                 true,
-                "If enabled, the limiter system will never touch cloaked chests"
+                "If enabled, the limiter system will not count cloaked chests towards total tiered chests limit"
             );
 
             MaxMoneyBarrels = config.Bind(
@@ -259,11 +259,35 @@ namespace InteractableCreditMultiplier
                 "Maximum number of drones of a single type allowed"
             );
 
-            MaxMultishops = config.Bind(
+            MaxTotalMultishops = config.Bind(
                 "ShopsLimits",
-                "MaxMultishops",
-                5,
-                "Maximum number of multishops allowed"
+                "MaxTotalMultishops",
+                10,
+                "Maximum total number of multishops allowed"
+            );
+            MaxTier1Multishops = config.Bind(
+                "ShopsLimits",
+                "MaxTier1Multishops",
+                6,
+                "Maximum number of tier 1 multishops allowed"
+            );
+            MaxTier2Multishops = config.Bind(
+                "ShopsLimits",
+                "MaxTier2Multishops",
+                4,
+                "Maximum number of tier 2 multishops allowed"
+            );
+            MaxEquipmentMultishops = config.Bind(
+                "ShopsLimits",
+                "MaxEquipmentMultishops",
+                4,
+                "Maximum number of equipment multishops allowed"
+            );
+            IgnoreEquipmentMultishops = config.Bind(
+                "ShopsLimits",
+                "IgnoreEquipmentMultishops",
+                true,
+                "If enabled, the limiter system will not count equipment multishops towards multi-shop category max"
             );
 
             EnableSoftCaps = config.Bind(
@@ -285,11 +309,23 @@ namespace InteractableCreditMultiplier
                 "Scale the soft cap effect for every failed attempt, resets on success"
             );
 
+            VerboseCreditLogging = config.Bind(
+                "Debug",
+                "VerboseCreditLogging",
+                false,
+                "Enable verbose logging for credit tracking"
+            );
             LogSpawnedPrefabs = config.Bind(
                 "Debug",
                 "LogSpawnedPrefabs",
                 false,
                 "Log details about spawned prefabs"
+            );
+            LogPreventedSpawns = config.Bind(
+                "Debug",
+                "LogPreventedSpawns",
+                false,
+                "Log when a spawn is forcefully prevented"
             );
             LogUncategorizedPrefabs = config.Bind(
                 "Debug",
@@ -297,13 +333,16 @@ namespace InteractableCreditMultiplier
                 false,
                 "Log details about uncategorized prefabs"
             );
+            DebugSpawnTracker = config.Bind(
+                "Debug",
+                "DebugSpawnTracker",
+                false,
+                "If enabled, logs a summary of scene interactable counts after scene population."
+            );
 
+            // General
             ModSettingsManager.AddOption(new StepSliderOption(InteractableCreditMultiplier, new StepSliderConfig { min = 0.5f, max = 100f, increment = 0.25f }));
 
-            // General & Debug
-            ModSettingsManager.AddOption(new CheckBoxOption(VerboseLogging));
-            ModSettingsManager.AddOption(new CheckBoxOption(LogSpawnedPrefabs));
-            ModSettingsManager.AddOption(new CheckBoxOption(LogUncategorizedPrefabs));
 
             // Chest Limits
             ModSettingsManager.AddOption(new IntSliderOption(MaxTieredChestsTotal, new IntSliderConfig { min = -1, max = 100 }));
@@ -345,12 +384,23 @@ namespace InteractableCreditMultiplier
             // Drone & Shop Limits
             ModSettingsManager.AddOption(new IntSliderOption(MaxDronesTotal, new IntSliderConfig { min = -1, max = 100 }));
             ModSettingsManager.AddOption(new IntSliderOption(MaxDronesPerType, new IntSliderConfig { min = -1, max = 20 }));
-            ModSettingsManager.AddOption(new IntSliderOption(MaxMultishops, new IntSliderConfig { min = -1, max = 20 }));
+
+            // Shop
+            ModSettingsManager.AddOption(new IntSliderOption(MaxTotalMultishops, new IntSliderConfig { min = -1, max = 50 }));
+            ModSettingsManager.AddOption(new IntSliderOption(MaxTier1Multishops, new IntSliderConfig { min = -1, max = 25 }));
+            ModSettingsManager.AddOption(new IntSliderOption(MaxTier2Multishops, new IntSliderConfig { min = -1, max = 25 }));
 
             // Limit Pity System
             ModSettingsManager.AddOption(new CheckBoxOption(EnableSoftCaps));
             ModSettingsManager.AddOption(new SliderOption(SoftCapBypassChance));
             ModSettingsManager.AddOption(new CheckBoxOption(SoftCapScaling));
+
+            // Debug
+            ModSettingsManager.AddOption(new CheckBoxOption(VerboseCreditLogging));
+            ModSettingsManager.AddOption(new CheckBoxOption(LogSpawnedPrefabs));
+            ModSettingsManager.AddOption(new CheckBoxOption(LogPreventedSpawns));
+            ModSettingsManager.AddOption(new CheckBoxOption(LogUncategorizedPrefabs));
+            ModSettingsManager.AddOption(new CheckBoxOption(DebugSpawnTracker));
         }
     }
 }
