@@ -5,7 +5,7 @@ using RoR2;
 
 namespace InteractableCreditMultiplier
 {
-    [BepInPlugin("com.workes.interactablecreditmultiplier", "Interactable Credit Multiplier", "1.2.0")]
+    [BepInPlugin("com.workes.interactablecreditmultiplier", "Interactable Credit Multiplier", "1.3.0")]
     public class Main : BaseUnityPlugin
     {
         public static ManualLogSource Log { get; private set; }

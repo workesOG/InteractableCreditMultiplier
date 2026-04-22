@@ -24,10 +24,9 @@ The limiting system (Fully customizable via config) works by preventing spawns. 
 
 This mod conflicts with ShareSuite when "OverridePlayerScaling" is enabled.
 ShareSuite overrides interactable credits during scene population, which prevents this mod’s multiplier from having any effect.
+To use both mods together disable "OverridePlayerScaling" in ShareSuite config
 
-To use both mods together:
-
-- Disable "OverridePlayerScaling" in ShareSuite config
+For some reason the this mod makes it so the beetle queen spawns more of the beetlejuice beetles, I currently have no idea why, but I will probably fix it at some point.
 
 ---
 
